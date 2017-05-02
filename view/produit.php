@@ -232,3 +232,52 @@ function view_pagesButtonSelector($pageArticle, $nbrArticle) {
   		</div>
 
  */
+
+function bloc_produit_scrap($ref) {
+
+  $reqSqlTab = DB_get_ArticleByRef($ref);
+
+  $nom      = $reqSqlTab['name'];
+  //$img      = $reqSqlTab['img_fichier'];
+  $marque   = $reqSqlTab['marque'];
+  $prix     = $reqSqlTab['prix'];
+  $imgs     = DB_BLZ_listOfImages($ref);
+
+  //var_dump($imgs);
+
+  if ($imgs == null) { $imgs[0][0] = ""; }
+
+  ?>
+    <div class="col-md-3 col-sm-6 block-prod">
+        <span class="thumbnail">
+          <img src="<?php echo(PATH_IMG . $imgs[0][0]); ?>" alt="...">
+          <hr class="line">
+          <p class="price center"><?php view_prix($prix); ?></p>
+          <h5 class="center">
+            <?php
+              echo ($marque . " - ");
+              echo ($nom);
+            ?>
+          </h5>
+          <p> <?php // texte   ?> </p>
+        </span>
+      </div>
+  <?php
+
+  }
+// ------------------------
+function view_tab_scrapProds($refTab) {
+
+  ?><div class="row"><?php
+
+  foreach ($refTab as $value) {
+    $ref = $value['ref'];
+
+    bloc_produit_scrap($ref);
+
+  }
+
+  ?></div><?php
+
+}
+// ------------------------

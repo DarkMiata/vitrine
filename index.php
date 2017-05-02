@@ -13,9 +13,9 @@
 
   <body>
   <?php
-    $article = DB_get_ArticleById(4);
+    //$article = DB_get_ArticleById(4);
 
-    var_dump($article);
+    //var_dump($article);
   ?>
   </body>
 

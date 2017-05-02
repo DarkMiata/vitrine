@@ -170,7 +170,7 @@ function DB_scrap_getRefAll($count, $page) {
 
   return $reqSql;
 }
-
+// ------------------------
 function DB_scrap_getAllByRef($ref) {
   $bdd = DB_connexion();
 
@@ -182,50 +182,4 @@ function DB_scrap_getAllByRef($ref) {
 
   return $reqSql;
 }
-// ========================================
-
-function bloc_produit_scrap($ref) {
-
-  $reqSqlTab = DB_get_ArticleByRef($ref);
-
-  $nom      = $reqSqlTab['name'];
-  //$img      = $reqSqlTab['img_fichier'];
-  $img      = ""; // valeur temporaire !!!!!!!!!
-  $marque   = $reqSqlTab['marque'];
-  $prix     = $reqSqlTab['prix'];
-
-  //var_dump($ref, $nom, $img, $marque);
-
-  ?>
-    <div class="col-md-3 col-sm-6 block-prod">
-        <span class="thumbnail">
-          <img src="<?php echo(PATH_IMG . $img); ?>" alt="...">
-          <hr class="line">
-          <p class="price center"><?php view_prix($prix); ?></p>
-          <h5 class="center">
-            <?php
-              echo ($marque . " - ");
-              echo ($nom);
-            ?>
-          </h5>
-          <p> <?php // texte   ?> </p>
-        </span>
-      </div>
-  <?php
-
-  }
 // ------------------------
-function view_tab_scrapProds($refTab) {
-
-  ?><div class="row"><?php
-
-  foreach ($refTab as $value) {
-    $ref = $value['ref'];
-
-    bloc_produit_scrap($ref);
-
-  }
-
-  ?></div><?php
-
-}

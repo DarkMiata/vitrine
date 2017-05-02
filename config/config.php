@@ -14,6 +14,8 @@ define("DB_PWD", "");
 
 define("DB_ARTICLE", "scrap_articles");
 
+$sqlConnexionState = FALSE;
+
 // ========================================
 // Routage des includes
 
@@ -47,10 +49,11 @@ define("DEBUG_CONSOLE", true);
 
 // ========================================
 
-require_debug (PATH_INC    . "include.php");
-require_debug (PATH_ERR    . "messageErreur.php");
-require_debug (PATH_MODELS . "data_base.php");
+require_debug (PATH_INC     . "include.php");
+require_debug (PATH_ERR     . "messageErreur.php");
+require_debug (PATH_MODELS  . "data_base.php");
 require_debug (PATH_MODELS  . "DB_scrap.php");
+require_debug (PATH_MODELS  . "DB_blz.php");
 require_debug (PATH_VIEW    . "produit.php");
 
 require_debug (PATH_CLASS  . "Article.php");

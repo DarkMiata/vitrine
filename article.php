@@ -3,7 +3,6 @@
  * @author Samuel Vermeulen  <samvermeulen@gmail.com>
  * @version 0.1 - 22/3/2017
  */
-
 ?>
 
 <html>
@@ -18,10 +17,22 @@
   <body>
 
   <?php
-    
+
   DB_BLZ_refCount(30857);
-  
-  ?>  
-   
+
+  ?>
+
   </body>
  </html>
+
+<?php
+// ========================================
+
+function config() {
+  require_once ("/config/config.php");
+}
+// ------------------------
+function 
+
+
+?>
