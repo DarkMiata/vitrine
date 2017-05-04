@@ -10,29 +10,98 @@
 
     <?php
       require_once ("/config/config.php");
+
+      if (isset($_GET["ref"])) {
+        $ref = $_GET["ref"];
+      }
+      else {
+        $ref = "";
+        // message d'erreur à définir si la ref n'est pas défini
+      }
+
+      $article = DB_get_ArticleByRef($ref);
+
+      $nom      = $article['name'];
+      $marque   = $article['marque'];
+      $ref      = $article['ref'];
+      $descrip  = $article['description'];
+      $prix     = $article['prix'];
+      $imgs     = DB_BLZ_listOfImages($ref);
+
+      $imgMain  = $imgs[0][0];
+
     ?>
 
-    <title>La Boutik - connexion au compte</title>
-  <!--</head>-->
+    <!-- CSS page_article - perso -->
+    <link rel="stylesheet" type="text/css" href="css/page_article.css">
+
+    <title>La Boutik - page article</title>
+  </head>
+
   <body>
+    <table >
 
-  <?php
+      <tr>
+        <td><img id="img_product" class="cadre" src="<?php echo(PATH_IMG . $imgMain); ?>"></td>
+        <td id="product_block_infos">
+          <div id="product_logo_marque" class="cadre">
+            logo
+          </div>
+          <div id="product_block">
+            <!-- Infos produit -->
+            <div id="product_block_description" class="cadre">
+              <h1><?php echo($nom); ?></h1>
+              <p id="product_ref">Réf: <?php echo($ref); ?></p>
+              <p id="product_description"><?php echo($descrip); ?></p>
+            </div>
+            <!-- Prix -->
+            <div id="product_block_price" class="cadre">
+              <div id="product_block_price_empty"></div>
+              <div id="product_price">25€99</div>
+            </div>
+          </div>
+          <form id="buy_block" class="cadre" action="/ajout_panier.php" method="post">
+            <label>Choississez votre Taille :</label>
+            <select name="taille" id="taille">
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+            </select>
+            <p>Couleur :</p>
+            <a href="">Guide des tailles<br></a>
+            <label>Quantité:</label>
+            <select name="quantite" id="quantite">
+              <option value=1>1</option>
+              <option value-2>2</option>
+            </select>
+            <p class="cadre">
+              <input id="product_submit_button" type="image" src="img/product_panier.png" name="submit" value="Ajouter au panier">
+            </p>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <?php
+            foreach ($imgs as $key => $img) {
+              if ($key != 0) {
+                ?><img class="product_thumbail" class="cadre" src="
+                <?php
+                  echo(PATH_IMG . $img['file_name']);
+                ?>" >
+                <?php
+              }
+            }
+          ?>
+        </td>
+        <td>
+          infos
+        </td>
+      </tr>
 
-  DB_BLZ_refCount(30857);
+    </table>
 
-  ?>
-
+    </div>
   </body>
  </html>
 
-<?php
-// ========================================
-
-function config() {
-  require_once ("/config/config.php");
-}
-// ------------------------
-function 
-
-
-?>

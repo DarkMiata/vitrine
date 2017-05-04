@@ -81,7 +81,7 @@ function bloc_produit_blz($ref) {
   //var_dump($ref, $nom, $img, $marque);
 
   ?>
-    <div class="col-md-3 col-sm-6 block-prod">
+    <div class="col-md-3 col-sm-6">
         <span class="thumbnail">
           <img src="<?php echo(PATH_IMG . $img); ?>" alt="...">
           <hr class="line">
@@ -248,7 +248,8 @@ function bloc_produit_scrap($ref) {
   if ($imgs == null) { $imgs[0][0] = ""; }
 
   ?>
-    <div class="col-md-3 col-sm-6 block-prod">
+
+      <div class="col-md-3 col-sm-6">
         <span class="thumbnail">
           <img src="<?php echo(PATH_IMG . $imgs[0][0]); ?>" alt="...">
           <hr class="line">
@@ -262,6 +263,7 @@ function bloc_produit_scrap($ref) {
           <p> <?php // texte   ?> </p>
         </span>
       </div>
+
   <?php
 
   }
