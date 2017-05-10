@@ -76,10 +76,13 @@ tr,td, div {
   width: 100px;
   float: right;
   background-color: #ff3333;
-  text-height: 2em;
   font-size: 33px;
-  font-family: ARIAL;
-  font-style: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#product_price_cents {
+  
 }
 
 #buy_block {

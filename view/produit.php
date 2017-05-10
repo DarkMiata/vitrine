@@ -83,7 +83,9 @@ function bloc_produit_blz($ref) {
   ?>
     <div class="col-md-3 col-sm-6">
         <span class="thumbnail">
-          <img src="<?php echo(PATH_IMG . $img); ?>" alt="...">
+          <a href="article.php?ref=<?php echo($ref); ?>">
+            <img src="<?php echo(PATH_IMG . $img); ?>" alt="...">
+          </a>
           <hr class="line">
           <p class="price center"><?php view_prix($prix); ?></p>
           <h5 class="center">
@@ -251,7 +253,9 @@ function bloc_produit_scrap($ref) {
 
       <div class="col-md-3 col-sm-6">
         <span class="thumbnail">
-          <img src="<?php echo(PATH_IMG . $imgs[0][0]); ?>" alt="...">
+          <a href="article.php?ref=<?php echo($ref); ?>">
+            <img src="<?php echo(PATH_IMG . $imgs[0][0]); ?>" alt="...">
+          </a>
           <hr class="line">
           <p class="price center"><?php view_prix($prix); ?></p>
           <h5 class="center">

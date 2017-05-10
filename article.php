@@ -28,6 +28,12 @@
       $prix     = $article['prix'];
       $imgs     = DB_BLZ_listOfImages($ref);
 
+      if ($article == false) {
+        ?>
+        <br>
+        exit();
+      }
+
       $imgMain  = $imgs[0][0];
 
     ?>
@@ -57,7 +63,7 @@
             <!-- Prix -->
             <div id="product_block_price" class="cadre">
               <div id="product_block_price_empty"></div>
-              <div id="product_price">25€99</div>
+              <div id="product_price"><?php view_prix($prix); ?></div>
             </div>
           </div>
           <form id="buy_block" class="cadre" action="/ajout_panier.php" method="post">
