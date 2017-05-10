@@ -19,23 +19,33 @@
         // message d'erreur à définir si la ref n'est pas défini
       }
 
-      $article = DB_get_ArticleByRef($ref);
+//      $article = DB_get_ArticleByRef($ref);
+//
+//      $nom      = $article['name'];
+//      $marque   = $article['marque'];
+//      $ref      = $article['ref'];
+//      $descrip  = $article['description'];
+//      $prix     = $article['prix'];
 
-      $nom      = $article['name'];
+      $article  = DB_BLZ_getAllByRef($ref);
+      $nom      = $article['nom'];
       $marque   = $article['marque'];
       $ref      = $article['ref'];
       $descrip  = $article['description'];
       $prix     = $article['prix'];
+      $type     = $article['type'];
+
       $imgs     = DB_BLZ_listOfImages($ref);
 
       if ($article == false) {
         ?>
         <br>
+        <h1>Article inexistant</h1>
+        <?php
         exit();
       }
 
       $imgMain  = $imgs[0][0];
-
     ?>
 
     <!-- CSS page_article - perso -->
@@ -45,7 +55,13 @@
   </head>
 
   <body>
-    <table >
+    <?php
+    //$GLOBALS["hierarchieArray"] = ["test1", "test2", "test3"];
+
+    $GLOBALS['hierarchieArray'] = [$type, $nom];
+    include("barre_hierarchie.php");
+    ?>
+    <table>
 
       <tr>
         <td><img id="img_product" class="cadre" src="<?php echo(PATH_IMG . $imgMain); ?>"></td>
@@ -109,5 +125,4 @@
 
     </div>
   </body>
- </html>
-
+</html>

@@ -8,12 +8,12 @@
  *    img_url
  *    ref
  *    type
- * 
+ *
  * blz_photos
  *    ref
  *    type
  *    url
- * 
+ *
  * blz_stock
  *    ref
  *    stock
@@ -147,7 +147,7 @@ function DB_Get_produit_From_id($id) {
     . " FROM produit"
     . " WHERE id='$id';"
     )->fetch();
- 
+
   return $reqSql;
 }
 // ========================================
@@ -160,92 +160,10 @@ function DB_Get_produit_all() {
     . " FROM produit"
     . " LIMIT 0,5;"
     )->fetchAll();
-  
+
   return $reqSql;
 }
 // ========================================
-
-function DB_BLZ_getAllByRef($ref) {
-  $bdd = DB_connexion();
-
-  $reqSql = $bdd->query(
-          " SELECT nom, marque, ref, prix, img_fichier, img_url, type"
-          . " FROM blz"
-          . " WHERE ref='$ref';"
-      )->fetch();
-  
-  //var_dump($reqSql);
- 
-  return $reqSql;
-}
-
-// ========================================
-
-function DB_BLZ_getRefAll($count, $page) {
-  $bdd = DB_connexion();
-
-  $offset = ($page-1)*$count;
-  
-  $reqSql = $bdd->query(
-          " SELECT ref"
-          . " FROM blz"
-          . " ORDER BY ref"
-          . " LIMIT $count OFFSET $offset"
-          . ";"
-      )->fetchall();
-  
-  return $reqSql;
-}
-// ========================================
-
-function DB_BLZ_count() {
-  $bdd = DB_connexion();
-
-  $reqSql = $bdd->query(
-          " SELECT COUNT(*)"
-          . "FROM blz"
-          . ";"
-      )->fetch();
-  
-  return $reqSql;
-}
-// ================================
-
-function DB_BLZ_getNomRefAll() {
-  $bdd = DB_connexion();
-
-  $reqSql = $bdd->query(
-          " SELECT nom, ref"
-          . " FROM blz"
-          . ";"
-      )->fetchall();
-  
-  return $reqSql;
-}
-// ================================
-
-function DB_BLZ_setTypeByRef($ref, $type) {
-  $bdd = DB_connexion();
-  
-  $reqsql = $bdd->query(
-          " UPDATE blz"
-          . " SET type  = '$type'"
-          . " WHERE ref = $ref"
-          ); 
-}
-// ================================
-
-function DB_BLZ_refCount($ref) {
-  $bdd= DB_connexion();
-  
-  $reqSql = $bdd->query(
-          " SELECT COUNT(*)"
-          . " FROM blz"
-          . " WHERE ref=$ref"
-          )->fetch()[0];
-  
-  debug("reqsql count ref: ".var_dump($reqSql));
-}
 
 // ================================
 
@@ -261,25 +179,25 @@ SET colonne = valeur [, colonne2 = valeur2 ...]
 
 function DB_BLZ_generateType () {
   debug("génération des types");
-  
+
   $reqSqlTab = DB_BLZ_getNomRefAll();
-  
+
   foreach ($reqSqlTab as $value) {
     $nom = $value['nom'];
     $ref = $value['ref'];
-    
+
     debug("nom: ".$nom);
-   
+
     if (preg_match("/pull/i", $nom)) {
       debug("type pull");
       DB_BLZ_setTypeByRef($ref, "pull");
     }
-    
+
     if (preg_match("/chemise/i", $nom)) {
       debug("type chemise");
       DB_BLZ_setTypeByRef($ref, "chem");
     }
-      
+
     if (preg_match("/polo/i", $nom)) {
       debug("type polo");
       DB_BLZ_setTypeByRef($ref, "polo");
@@ -311,7 +229,7 @@ function DB_BLZ_generateType () {
       debug("type gilet");
       DB_BLZ_setTypeByRef($ref, "gilet");
     }
-    
+
     if (preg_match("/blouson/i", $nom)) {
       debug("type blouson");
       DB_BLZ_setTypeByRef($ref, "blous");
@@ -321,25 +239,25 @@ function DB_BLZ_generateType () {
       debug("type veste");
       DB_BLZ_setTypeByRef($ref, "veste");
     }
-      
+
     if (preg_match("/jean/i", $nom)
             or preg_match("/jeans/i", $nom)) {
       debug("type jeans");
       DB_BLZ_setTypeByRef($ref, "jeans");
     }
-    
+
     if (preg_match("/casquette/i", $nom)) {
       debug("type casquette");
       DB_BLZ_setTypeByRef($ref, "casqu");
     }
-    
+
     if (preg_match("/chaussure/i", $nom)) {
       debug("type chaussure");
       DB_BLZ_setTypeByRef($ref, "chaus");
     }
-  } 
+  }
 }
 /** if (preg_match("/php/i", "PHP est le meilleur langage de script du web."))
- * 
+ *
  */
 

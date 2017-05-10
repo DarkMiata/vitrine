@@ -16,6 +16,10 @@
     //$article = DB_get_ArticleById(4);
 
     //var_dump($article);
+
+    //DB_BLZ_convertTypeToCatid();
+
+    DB_BLZ_description_scrapToBLZ();
   ?>
   </body>
 
