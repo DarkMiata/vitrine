@@ -232,11 +232,11 @@ function DB_BLZ_description_scrapToBLZ() {
   $refsArray = $bdd->query(
       "SELECT ref"
       . " FROM blz"
-      . " WHERE description=''"
+      . " WHERE description='' OR description IS NULL"
       . ";"
       )->fetchAll();
 
-
+//var_dump($refsArray);
 
   foreach ($refsArray as $article) {
     $ref = $article['ref'];
@@ -245,7 +245,7 @@ function DB_BLZ_description_scrapToBLZ() {
       "SELECT description"
       . " FROM scrap_articles"
       . " WHERE ref='$ref';"
-      );
+      )->fetch();
 
   var_dump($ref);
   var_dump($description);
